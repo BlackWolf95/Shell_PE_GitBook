@@ -1,0 +1,8 @@
+Mount the VBox Guest additions disk on the guest (Devices-> Insert ....) and copy paste the folder contents.
+Give the necessary execution rights to scripts and do the following:
+
+1. ./VBoxLinuxAdditions.run
+2. ./VBoxDarwinAdditionsUninstall.tool
+3. Again ./VBoxLinuxAdditions.run.
+
+Then reboot the guest machine.
