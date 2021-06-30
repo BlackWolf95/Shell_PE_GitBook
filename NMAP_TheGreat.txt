@@ -12,7 +12,7 @@ W3Af:
 http://w3af.org/
 http://docs.w3af.org/en/latest/install.html 
 
-Password hash (other than JTR and Hydra) Patator:
+Bruteforcing tool Patator:
 https://tools.kali.org/password-attacks/patator
 
 XSS and all: PwnXSS & XSSer
