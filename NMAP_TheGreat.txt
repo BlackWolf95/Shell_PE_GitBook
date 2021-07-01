@@ -33,7 +33,18 @@ https://wigle.net/search
 
 
 
-
+Shortcut pratice description of Airmon Ng for WEP:
+ Q) Get a practice WiFi AP 
+So do a airmon-ng, then run a airodump-ng scan on all CHs with the filtering option to for only WEP.
+then walk around your place with your laptop, looking for the strongest WEP AP. When you find it, lock on to it aka restarting airodump-ng to show only that AP & at the end do -w to write the data to a name-of-ap.pcap file.
+Now at this part you are looking at the IV packets. you need so many of them before you can crack it.
+I forget off hand how many because it has been a long time, but I think it's 1000, or something like that.
+the more the better.
+Now the IV packets come in slow,
+this is where the aireplay-ng comes into play to gen up more IV data.
+should not take longer then 2-3 min
+when done just run aircrack-ng on the pcap file. 
+the crack should not take longer then 7 to 12 min.
 
 
 
