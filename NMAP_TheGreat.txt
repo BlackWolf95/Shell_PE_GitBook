@@ -1,5 +1,5 @@
 
-Date: 28/6/2021
+Date: 30/7/2021
 Name: Personal CheatSheet 
 This is getting updated after a shared Google Doc got removed for no good reason, it had the list of tools I gathered over time.
 
@@ -71,6 +71,20 @@ the crack should not take longer then 7 to 12 min.
 
 
 ******************************************************************IGNORE, self reference only**************************************************
+Important python packages
+*
+1. Scapy for ARP spoofing
+2. Selenium for testing web apps
+3.
+
+***************************************************
+
+
+Refer enumeration scripts
+
+
+
+***************************************************
 Common nmap scans formats (lookup options for more reasons): AVOID using -sC unless needed (can cut down results):
 nmap -Pn -sT -sV -sC -O  -p 0-65535 10.11.1.36 -oA nmaptcpfullscan1
 nmap -Pn -sU -sV -O 10.11.1.36 -oA nmapudpscan
@@ -204,7 +218,85 @@ hydra -s 80 -L /usr/share/metasploit-framework/data/wordlists/http_default_users
 Sqlmap examples
 sqlmap -r login -p username,password --risk 3 --level 5 --dbms mysql
 
+****************************************************
 
+How to use NC and then GET commands:
+nc -nv 10.168.105.56 80
+GET / HTTP/1.0
+
+
+
+Can do all get post stuff from here
+-------------------------------------------------------------------------------------------
+
+Set up a WiFi and Ethernet access without bothering each other (using dedicated different router)
+
+How to set up different gateways for multiple networks lets say
+over Ethernet and Wifi
+
+First check that the default gateway isnt the same or prioritized
+
+Then go for the following commands
+
+ip a
+route
+
+Then lets say for the Ethernet we are trying to get the IP from the DHCP
+
+sudo dhclient eth0
+
+If that doesnt work, lets try this:
+
+sudo ifconfig eth0 10.168.105.221/24
+
+
+Then type and check the routing table
+ip route
+default via 10.168.105.17 dev eth0
+default via 10.11.128.1 dev wlan0 proto dhcp metric 600
+10.11.128.0/20 dev wlan0 proto kernel scope link src 10.11.143.0 metric 600
+10.168.105.0/24 dev eth0 proto kernel scope link src 10.168.105.221
+172.16.83.0/24 dev vmnet8 proto kernel scope link src 172.16.83.1
+172.16.179.0/24 dev vmnet1 proto kernel scope link src 172.16.179.1
+
+Fix the gateway issue by deleting like this:
+sudo ip route del default via 10.168.105.17 dev eth0
+
+──(ayan㉿kali)-[~]
+└─$ ip route
+default via 10.11.128.1 dev wlan0 proto dhcp metric 600
+10.11.128.0/20 dev wlan0 proto kernel scope link src 10.11.143.0 metric 600
+10.168.105.0/24 dev eth0 proto kernel scope link src 10.168.105.221
+172.16.83.0/24 dev vmnet8 proto kernel scope link src 172.16.83.1
+172.16.179.0/24 dev vmnet1 proto kernel scope link src 172.16.179.1
+
+Then add the IP route to the gateways (pointing to a router) explicitly
+┌──(ayan㉿kali)-[~]
+└─$ sudo ip route add 10.168.106.0/24 via 10.168.105.17 dev eth0
+
+┌──(ayan㉿kali)-[~]
+└─$ sudo ip route add 10.168.107.0/24 via 10.168.105.17 dev eth0
+
+┌──(ayan㉿kali)-[~]
+└─$ sudo ip route add 10.168.108.0/24 via 10.168.105.17 dev eth0
+
+┌──(ayan㉿kali)-[~]
+└─$ ip route
+default via 10.11.128.1 dev wlan0 proto dhcp metric 600
+10.11.128.0/20 dev wlan0 proto kernel scope link src 10.11.143.0 metric 600
+10.168.105.0/24 dev eth0 proto kernel scope link src 10.168.105.221
+10.168.106.0/24 via 10.168.105.17 dev eth0
+10.168.107.0/24 via 10.168.105.17 dev eth0
+10.168.108.0/24 via 10.168.105.17 dev eth0
+172.16.83.0/24 dev vmnet8 proto kernel scope link src 172.16.83.1
+172.16.179.0/24 dev vmnet1 proto kernel scope link src 172.16.179.1
+
+
+─$ sudo ip route add 10.168.105.0/24 via 10.168.106.52 dev eth0
+
+┌──(ayan㉿kali)-[~]
+└─$ sudo ip route add 10.103.14.0/24 via 10.168.106.100 dev eth0
+-------------------------------------------------------------------------------------------
 
 
 
