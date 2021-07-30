@@ -1,0 +1,8 @@
+Find all instances of keyword "open" in current directory recursively:
+grep "open" . -r
+
+Find all instances recursively inside a folder for instances of open and aggressive:
+grep -r "open \| aggressive" *. * >> out.txt
+
+Remove all instances of pattern within quotes from out.txt (input):
+cat out.txt | grep -i -v -E '/nmap/syn'  
