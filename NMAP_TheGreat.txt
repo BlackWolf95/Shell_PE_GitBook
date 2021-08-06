@@ -73,9 +73,12 @@ the crack should not take longer then 7 to 12 min.
 ******************************************************************IGNORE, self reference only**************************************************
 Important python packages
 *
-1. Scapy for ARP spoofing
-2. Selenium for testing web apps
-3.
+1. Scapy for ARP spoofing and other packety interception/modification techniques, refer
+https://scapy.net/
+https://github.com/davidbombal/scapy/blob/main/spanning-tree-root-attack.py
+
+2. Selenium, webbot for testing web apps
+3. 
 
 ***************************************************
 
