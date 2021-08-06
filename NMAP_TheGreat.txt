@@ -36,7 +36,8 @@ Snmpcheck/snmpwalk: Test snmp
 Ettercap: Perform MITM
 Crunch: create word list
 
-
+Vulnerability assesment (for web apps):
+Nessus, Nikto, Open Vas
 
 
 Shortcut pratice description of Airmon Ng for WEP:
