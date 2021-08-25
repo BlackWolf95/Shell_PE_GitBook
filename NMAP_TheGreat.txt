@@ -37,7 +37,10 @@ Ettercap: Perform MITM
 Crunch: create word list
 
 Vulnerability assesment (for web apps):
-Nessus, Nikto, Open Vas
+Nessus, Nikto, Open Vas, Owasp Zap
+
+Reverse Engineering:
+Ghidra, RADARE2, IDA, DNsSpy (for .NET apps)
 
 
 Shortcut pratice description of Airmon Ng for WEP:
@@ -52,7 +55,6 @@ this is where the aireplay-ng comes into play to gen up more IV data.
 should not take longer then 2-3 min
 when done just run aircrack-ng on the pcap file. 
 the crack should not take longer then 7 to 12 min.
-
 
 
 
